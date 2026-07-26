@@ -1,0 +1,325 @@
+.faqs-admin {
+    padding: 32px;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background: #f4f7fb;
+    min-height: 100vh;
+    width: 100%;
+    flex: 1;
+    box-sizing: border-box;
+  }
+  
+  .faqs-admin * {
+    box-sizing: border-box;
+  }
+  
+  .faqs-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: #ffffff;
+    padding: 22px 28px;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    border: 1px solid #eef2f7;
+  }
+  
+  .faqs-admin-header h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px 0;
+  }
+  
+  .faqs-admin-header p {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0;
+  }
+  
+  .faqs-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .faqs-btn-primary {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(6, 182, 212, 0.35);
+  }
+  
+  .faqs-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(6, 182, 212, 0.45);
+  }
+  
+  .faqs-btn-primary:disabled {
+    background: #a8dee7;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .faqs-btn-secondary {
+    background: #f1f5f9;
+    color: #334155;
+  }
+  
+  .faqs-btn-secondary:hover {
+    background: #e2e8f0;
+  }
+  
+  .faqs-error-banner {
+    background: #fef2f2;
+    color: #b91c1c;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    border-left: 4px solid #dc2626;
+  }
+  
+  .faqs-loading,
+  .faqs-empty {
+    text-align: center;
+    padding: 70px 20px;
+    color: #94a3b8;
+    font-size: 15px;
+    background: #fff;
+    border-radius: 18px;
+    border: 1px dashed #cbd5e1;
+  }
+  
+  .faqs-table-wrapper {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    border: 1px solid #eef2f7;
+  }
+  
+  .faqs-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+  
+  .faqs-table th:nth-child(1),
+  .faqs-table td:nth-child(1) { width: 32%; }
+  
+  .faqs-table th:nth-child(2),
+  .faqs-table td:nth-child(2) { width: auto; }
+  
+  .faqs-table th:nth-child(3),
+  .faqs-table td:nth-child(3) { width: 100px; }
+  
+  .faqs-table thead {
+    background: linear-gradient(135deg, #0891b2, #06b6d4);
+  }
+  
+  .faqs-table th {
+    text-align: left;
+    padding: 16px 18px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ecfeff;
+    letter-spacing: 0.6px;
+  }
+  
+  .faqs-table td {
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: top;
+  }
+  
+  .faqs-table tbody tr:hover {
+    background: #f0fdfe;
+  }
+  
+  .faqs-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .faqs-table-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .faqs-keyword-badge {
+    background: linear-gradient(135deg, #cffafe, #a5f3fc);
+    color: #0e7490;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  
+  .faqs-table-answer {
+    color: #64748b;
+    line-height: 1.5;
+  }
+  
+  .faqs-table-actions {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .faqs-icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .faqs-icon-edit {
+    background: #e0f2fe;
+    color: #0284c7;
+  }
+  
+  .faqs-icon-edit:hover {
+    background: #0284c7;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  
+  .faqs-icon-delete {
+    background: #fee2e2;
+    color: #dc2626;
+  }
+  
+  .faqs-icon-delete:hover {
+    background: #dc2626;
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  
+  .faqs-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+  
+  .faqs-modal {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 540px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+  
+  .faqs-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 26px;
+    border-bottom: 1px solid #f1f5f9;
+    background: linear-gradient(135deg, #ecfeff, #ffffff);
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .faqs-modal-header h3 {
+    font-size: 19px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+  }
+  
+  .faqs-modal-close {
+    background: #f1f5f9;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+  
+  .faqs-modal-close:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+    transform: rotate(90deg);
+  }
+  
+  .faqs-form {
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .faqs-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  
+  .faqs-form-group label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #334155;
+  }
+  
+  .faqs-form-group small {
+    font-size: 11.5px;
+    color: #94a3b8;
+  }
+  
+  .faqs-form-group input,
+  .faqs-form-group textarea {
+    padding: 11px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.2s ease;
+    resize: vertical;
+    background: #f8fafc;
+  }
+  
+  .faqs-form-group input:focus,
+  .faqs-form-group textarea:focus {
+    border-color: #06b6d4;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.12);
+  }
+  
+  .faqs-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 6px;
+  }

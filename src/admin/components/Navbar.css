@@ -1,0 +1,476 @@
+/* ===== Sidebar base ===== */
+.sidebar {
+  text-align: left;
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: linear-gradient(180deg, #0f1720 0%, #16202b 100%);
+  padding: 22px 16px;
+  color: white;
+  z-index: 1000;
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s ease, padding 0.3s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(6, 182, 212, 0.35);
+  border-radius: 10px;
+}
+
+/* Ambient glow accent */
+.sidebar-glow {
+  position: absolute;
+  top: -80px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.25), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+  animation: glowFloat 8s ease-in-out infinite;
+}
+
+@keyframes glowFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 30px); }
+}
+
+/* ===== Header ===== */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fadeInDown 0.7s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.sidebar-logo-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(6, 182, 212, 0.4);
+  animation: logoSpin 6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes logoSpin {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(12deg); }
+}
+
+.sidebar-logo-icon {
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.animated-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #06b6d4, #67e8f9, #06b6d4);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerText 4s linear infinite;
+  line-height: 1.3;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes shimmerText {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Desktop collapse toggle button (3-line icon, sits in header) */
+.sidebar-collapse-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.sidebar-collapse-btn:hover {
+  background: rgba(6, 182, 212, 0.2);
+  color: #22d3ee;
+  border-color: rgba(6, 182, 212, 0.4);
+}
+
+/* ===== Nav list ===== */
+.sidebar-nav {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.sidebar-item {
+  opacity: 0;
+  transform: translateX(-16px);
+  animation: itemSlideIn 0.45s ease forwards;
+  margin-bottom: 4px;
+}
+
+@keyframes itemSlideIn {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.sidebar .nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #cbd5e1;
+  padding: 11px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+
+/* Sliding hover fill */
+.sidebar .nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  border-radius: 12px;
+  z-index: -1;
+}
+
+.sidebar .nav-link:hover::before {
+  transform: translateX(0);
+}
+
+.sidebar .nav-link:hover {
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.sidebar .nav-link:hover .sidebar-icon-wrap {
+  transform: scale(1.15) rotate(-6deg);
+  color: #06b6d4;
+}
+
+/* Active state */
+.sidebar .nav-link.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.18), rgba(8, 145, 178, 0.12));
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.35);
+}
+
+.sidebar .nav-link.active .sidebar-icon-wrap {
+  color: #22d3ee;
+  transform: scale(1.1);
+}
+
+.sidebar .nav-link.active .sidebar-active-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.sidebar-icon-wrap {
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: transform 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+
+.sidebar-label {
+  flex: 1;
+  white-space: nowrap;
+}
+
+.sidebar-active-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+/* ===== Divider & logout ===== */
+.sidebar-divider {
+  border-color: rgba(255, 255, 255, 0.08);
+  margin: 16px 0;
+}
+
+.sidebar-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.sidebar-logout-btn:hover {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35);
+}
+
+/* ===== Logout popup ===== */
+.logout-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+  animation: fadeInOut 1.2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, -60%); }
+  30% { opacity: 1; transform: translate(-50%, -50%); }
+  70% { opacity: 1; transform: translate(-50%, -50%); }
+  100% { opacity: 0; transform: translate(-50%, -40%); }
+}
+
+/* ===== Mobile toggle ===== */
+.sidebar-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  z-index: 1101;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(6, 182, 212, 0.4);
+  transition: transform 0.2s ease;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.sidebar-toggle:active {
+  transform: scale(0.92);
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+/* =====================================================
+   COLLAPSED (icon-only rail) MODE — desktop
+   ===================================================== */
+.sidebar.collapsed {
+  width: 76px;
+  padding: 22px 10px;
+}
+
+/* Header: keep logo, hide title, keep collapse button centered under it */
+.sidebar.collapsed .sidebar-header {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar.collapsed .animated-title {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-collapse-btn {
+  transform: rotate(90deg);
+}
+
+/* Nav links: center icons, hide labels & active dot */
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  padding: 12px 0;
+  gap: 0;
+}
+
+.sidebar.collapsed .sidebar-label,
+.sidebar.collapsed .sidebar-active-dot {
+  display: none;
+}
+
+.sidebar.collapsed .sidebar-logout-btn {
+  padding: 12px 0;
+}
+
+.sidebar.collapsed .sidebar-logout-btn i {
+  margin-right: 0 !important;
+}
+
+/* ===== Tooltips (shown only while collapsed, on hover) ===== */
+.sidebar.collapsed .nav-link,
+.sidebar.collapsed .sidebar-logout-btn,
+.sidebar.collapsed .sidebar-collapse-btn {
+  position: relative;
+}
+
+.sidebar.collapsed .nav-link::after,
+.sidebar.collapsed .sidebar-logout-btn::after,
+.sidebar-collapse-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-6px);
+  background: #0f1720;
+  color: #fff;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(6, 182, 212, 0.25);
+  z-index: 2000;
+}
+
+.sidebar.collapsed .nav-link:hover::after,
+.sidebar.collapsed .sidebar-logout-btn:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* Collapse-button tooltip works in both expanded and collapsed states */
+.sidebar-collapse-btn:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.sidebar:not(.collapsed) .sidebar-collapse-btn::after {
+  left: auto;
+  right: calc(100% + 14px);
+  transform: translateY(-50%) translateX(6px);
+}
+
+.sidebar:not(.collapsed) .sidebar-collapse-btn:hover::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 260px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Icon-rail collapse doesn't apply on mobile — off-canvas handles it */
+  .sidebar.collapsed {
+    width: 260px;
+    padding: 22px 16px;
+  }
+
+  .sidebar.collapsed .animated-title,
+  .sidebar.collapsed .sidebar-label,
+  .sidebar.collapsed .sidebar-active-dot {
+    display: block;
+  }
+
+  .sidebar.collapsed .sidebar-header {
+    flex-direction: row;
+  }
+
+  .sidebar.collapsed .nav-link {
+    justify-content: flex-start;
+    padding: 11px 14px;
+    gap: 12px;
+  }
+
+  .sidebar-collapse-btn {
+    display: none;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeInOut2 0.25s ease;
+  }
+
+  @keyframes fadeInOut2 {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}

@@ -1,0 +1,13 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+#root {
+  width: 100%;
+}
+
+/* NOTE: the default Vite boilerplate (.logo, .card, .read-the-docs,
+   logo-spin animation) has been removed — it isn't used anywhere in
+   your admin panel and was just leftover starter-template CSS. */
