@@ -19,11 +19,9 @@ public class PatientService {
     // Register Patient
     // =====================================
     public Patient registerPatient(Patient patient) {
-
         if (repository.existsByEmail(patient.getEmail())) {
             throw new RuntimeException("Email already registered");
         }
-
         return repository.save(patient);
     }
 
@@ -33,13 +31,20 @@ public class PatientService {
     public Patient verifyPatient(String firstName,
                                  String lastName,
                                  String dob) {
-
         Optional<Patient> patient = repository
                 .findByFirstNameAndLastNameAndDob(
                         firstName,
                         lastName,
                         dob);
+        return patient.orElse(null);
+    }
 
+    // =====================================
+    // Find Patient By Email (used by the
+    // OTP-only "existing patient" flow)
+    // =====================================
+    public Patient findByEmail(String email) {
+        Optional<Patient> patient = repository.findByEmail(email);
         return patient.orElse(null);
     }
 
@@ -47,37 +52,29 @@ public class PatientService {
     // Get All Patients
     // =====================================
     public List<Patient> getAllPatients() {
-
         return repository.findAll();
-
     }
 
     // =====================================
     // Get Patient By Id
     // =====================================
     public Patient getPatientById(Long id) {
-
         return repository.findById(id).orElse(null);
-
     }
 
     // =====================================
     // Update Patient
     // =====================================
     public Patient updatePatient(Long id, Patient patient) {
-
         Patient oldPatient = repository.findById(id).orElse(null);
-
         if (oldPatient == null) {
             return null;
         }
-
         oldPatient.setFirstName(patient.getFirstName());
         oldPatient.setLastName(patient.getLastName());
         oldPatient.setDob(patient.getDob());
         oldPatient.setEmail(patient.getEmail());
         oldPatient.setPhone(patient.getPhone());
-
         return repository.save(oldPatient);
     }
 
@@ -85,9 +82,6 @@ public class PatientService {
     // Delete Patient
     // =====================================
     public void deletePatient(Long id) {
-
         repository.deleteById(id);
-
     }
-
 }
