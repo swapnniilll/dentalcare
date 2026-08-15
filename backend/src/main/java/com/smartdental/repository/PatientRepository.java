@@ -19,6 +19,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
             String dob
     );
 
+    Optional<Patient> findByEmail(String email);
+
     // Dashboard — New Patients This Month
     long countByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
 }
